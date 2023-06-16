@@ -18,8 +18,8 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = Math.floor(Math.random() * 1000);
+    setValue({ ...value, id: (value.id = id) });
     setArrayOfUsers([...arrayOfUsers, value]);
-    console.log(value);
     document.getElementById("form").reset(); // reset form
     setValue({ name: "", lastName: "", age: "", address: "", email: "" });
   };

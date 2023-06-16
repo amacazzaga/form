@@ -6,7 +6,7 @@ const ShowData = ({
   address,
   email,
   age,
- id,
+  id,
   setValue,
   setSubmitOrEdit,
 }) => {
