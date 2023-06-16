@@ -20,6 +20,7 @@ function App() {
     const id = Math.floor(Math.random() * 1000);
     setValue({ ...value, id: (value.id = id) });
     setArrayOfUsers([...arrayOfUsers, value]);
+    console.log(value);
     document.getElementById("form").reset(); // reset form
     setValue({ name: "", lastName: "", age: "", address: "", email: "" });
   };
@@ -45,7 +46,7 @@ function App() {
           age={m.age}
           email={m.email}
           setValue={setValue}
-          setSubmitOrEdit={setSubmitOrEdit}
+          
         />
       ))}
       <input
@@ -91,7 +92,11 @@ function App() {
         onChange={handleChange}
         value={value.email}
       ></input>
-      {submitOrEdit ? <SubmitButton /> : <EditButton value={value} />}
+      {submitOrEdit ? (
+        <SubmitButton />
+      ) : (
+        <EditButton value={value}/>
+      )}
     </form>
   );
 }

@@ -8,7 +8,7 @@ const ShowData = ({
   age,
   id,
   setValue,
-  setSubmitOrEdit,
+
 }) => {
   return (
     <div
@@ -21,8 +21,9 @@ const ShowData = ({
             address: address,
             age: age,
             email: email,
-          },
-          setSubmitOrEdit(false)
+            id:id
+          }
+          
         );
       }}
     >
