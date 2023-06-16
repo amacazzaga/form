@@ -37,6 +37,7 @@ function App() {
     <form id="form" className="container d-flex row" onSubmit={handleSubmit}>
       {arrayOfUsers.map((m) => (
         <ShowData
+          key={m.id}
           id={m.id}
           name={m.name}
           lastName={m.lastName}
