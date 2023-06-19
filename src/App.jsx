@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShowData from "./components/ShowData";
 import EditButton from "./components/EditButton";
 import SubmitButton from "./components/SubmitButton";
@@ -13,13 +13,14 @@ function App() {
     email: "",
   });
   const [arrayOfUsers, setArrayOfUsers] = useState([]);
-  const [submitOrEdit, setSubmitOrEdit] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   ////
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = Math.floor(Math.random() * 1000);
-    setValue({ ...value, id: (value.id = id) });
-    setArrayOfUsers([...arrayOfUsers, value]);
+    const newValue = { ...value, id: id }; //repasar!!!!
+    setValue(newValue);
+    setArrayOfUsers([...arrayOfUsers, newValue]);
     console.log(value);
     document.getElementById("form").reset(); // reset form
     setValue({ name: "", lastName: "", age: "", address: "", email: "" });
@@ -33,9 +34,12 @@ function App() {
       [e.target.name]: e.target.value,
     });
   };
+
+  useEffect(() => {}, [value]);
+
   ////
   return (
-    <form id="form" className="container d-flex row" onSubmit={handleSubmit}>
+    <form id="form" className="container d-flex row">
       {arrayOfUsers.map((m) => (
         <ShowData
           key={m.id}
@@ -46,7 +50,7 @@ function App() {
           age={m.age}
           email={m.email}
           setValue={setValue}
-          
+          setIsEditing={setIsEditing}
         />
       ))}
       <input
@@ -92,10 +96,15 @@ function App() {
         onChange={handleChange}
         value={value.email}
       ></input>
-      {submitOrEdit ? (
-        <SubmitButton />
+      {isEditing ? (
+        <EditButton
+          value={value}
+          setValue={setValue}
+          arrayOfUsers={arrayOfUsers}
+          setArrayOfUsers={setArrayOfUsers}
+        />
       ) : (
-        <EditButton value={value}/>
+        <SubmitButton onSubmit={handleSubmit} />
       )}
     </form>
   );

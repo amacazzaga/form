@@ -8,7 +8,7 @@ const ShowData = ({
   age,
   id,
   setValue,
-
+  setIsEditing
 }) => {
   return (
     <div
@@ -22,9 +22,8 @@ const ShowData = ({
             age: age,
             email: email,
             id:id
-          }
-          
-        );
+          }        
+        ),setIsEditing(true);
       }}
     >
       <div>{id}</div>
