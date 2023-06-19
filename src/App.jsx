@@ -25,7 +25,7 @@ function App() {
     document.getElementById("form").reset(); // reset form
     setValue({ name: "", lastName: "", age: "", address: "", email: "" });
   };
-  ////
+  //
   const handleChange = (e) => {
     //setValue({ name: e.target.name, value: e.target.value }) no dinamica
     //setValue({[e.target.name]:e.target.value}) dinamica
