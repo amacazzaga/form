@@ -35,11 +35,10 @@ function App() {
     });
   };
 
-  useEffect(() => {}, [value]);
 
   ////
   return (
-    <form id="form" className="container d-flex row">
+    <form id="form" className="container d-flex row" onSubmit={(e) => e.preventDefault()}>
       {arrayOfUsers.map((m) => (
         <ShowData
           key={m.id}
